@@ -1,3 +1,4 @@
+import 'package:calc_time_to_planet/result_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -23,7 +24,9 @@ class calcPage extends StatefulWidget {
 }
 
 class _calcPage extends State<calcPage> {
-  @override
+  String valueText = '';
+
+  @override 
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -34,12 +37,20 @@ class _calcPage extends State<calcPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [ 
               TextField(
+                onChanged: (value) {
+                  valueText = value;
+                },
                 decoration: InputDecoration(
                   hintText: 'あなたの50Mのタイムを入力してください。'
                 ),
               ),
               ElevatedButton(
-                onPressed: () {}, 
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ResultPage(valueText),)
+                  );
+                }, 
                 child: Text('計算開始'),
               )
             ]
